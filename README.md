@@ -34,8 +34,10 @@ Designed as part of an internship project, the application focuses on clean UI, 
 ## 📁 Folder Structure
 
 
+## 📁 Folder Structure
+
+```text
 AdTech-QuizApp-C1XIntern/
-│
 ├── components/
 │   ├── AboutUs.tsx
 │   ├── Button.tsx
@@ -62,8 +64,7 @@ AdTech-QuizApp-C1XIntern/
 ├── tsconfig.json
 ├── vite.config.ts
 └── README.md
----
-
+````
 
 ---
 
@@ -122,5 +123,5 @@ GitHub: https://github.com/lavanitha
 This project is for educational and internship demonstration purposes.
 
 
-## 📁 Folder Structure
+
 
