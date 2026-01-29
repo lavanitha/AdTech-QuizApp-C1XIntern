@@ -1,5 +1,5 @@
 
-# 📘 AdTech Quiz Web App
+#  AdTech Quiz Web App
 
 An interactive quiz-based web application built to assess and reinforce knowledge from **The AdTech Book**.  
 This app delivers a smooth, engaging quiz experience with real-time progress tracking and a clear results summary.
@@ -8,20 +8,20 @@ Designed as part of an internship project, the application focuses on clean UI, 
 
 ---
 
-## 🚀 Features
+##  Features
 
-- 📄 Elegant landing page with quiz overview and call-to-action
-- ❓ One-question-at-a-time quiz flow
-- 📊 Real-time progress tracking
-- ✅ Immediate answer validation
-- 🏁 Results summary after quiz completion
-- ♻️ Reusable and modular React components
-- ⚡ Fast development and build performance using Vite
-- 🔐 Fully type-safe implementation using TypeScript
+-  Elegant landing page with quiz overview and call-to-action
+-  One-question-at-a-time quiz flow
+- Real-time progress tracking
+-  Immediate answer validation
+-  Results summary after quiz completion
+-  Reusable and modular React components
+-  Fast development and build performance using Vite
+-  Fully type-safe implementation using TypeScript
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Frontend Framework:** React  
 - **Language:** TypeScript  
@@ -31,10 +31,8 @@ Designed as part of an internship project, the application focuses on clean UI, 
 
 ---
 
-## 📁 Folder Structure
 
-
-## 📁 Folder Structure
+## Folder Structure
 
 ```text
 AdTech-QuizApp-C1XIntern/
@@ -68,7 +66,7 @@ AdTech-QuizApp-C1XIntern/
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 Follow these steps to run the project locally:
 
@@ -88,7 +86,7 @@ npm run dev
 
 ---
 
-## 🧠 Quiz Logic Overview
+## Quiz Logic Overview
 
 - Questions are sourced from `data/questions.ts`
 - Each question supports multiple-choice options
@@ -98,7 +96,7 @@ npm run dev
 
 ---
 
-## 📌 Project Purpose
+##  Project Purpose
 
 This project was developed to:
 
@@ -110,7 +108,7 @@ This project was developed to:
 
 ---
 
-## 👩‍💻 Author
+##  Author
 
 **Mary Lavanitha Sunder**  
 Frontend Developer | Intern  
@@ -118,7 +116,7 @@ GitHub: https://github.com/lavanitha
 
 ---
 
-## 📄 License
+##  License
 
 This project is for educational and internship demonstration purposes.
 
