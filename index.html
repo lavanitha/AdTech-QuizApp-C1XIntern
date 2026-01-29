@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>The AdTech Book Quiz | Avenga</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Avenga Haffer"', 'Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+              serif: ['"Avenga Haffer"', 'Georgia', 'serif'],
+            },
+            colors: {
+              avenga: {
+                red: '#FF3E24',
+                purple: '#1A0C2F',
+                cream: '#F3F0EB',
+                text: '#1F1F1F',
+                lightPurple: '#4A3B69'
+              }
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'float': 'float 6s ease-in-out infinite',
+              'blob': 'blob 10s infinite',
+              'spin-slow': 'spin 12s linear infinite',
+              'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-15px)' },
+              },
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              pulseGlow: {
+                '0%, 100%': { opacity: '0.4' },
+                '50%': { opacity: '0.7' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @font-face {
+        font-family: 'Avenga Haffer';
+        src: local('Avenga Haffer'), local('Arial');
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      body {
+        background-color: #F3F0EB;
+        color: #1F1F1F;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+      
+      /* 3D Book Engine */
+      .perspective-container {
+        perspective: 1500px;
+        position: relative;
+        z-index: 20;
+        /* Width is important to allow the book to open without clipping */
+        width: 100%;
+        max-width: 800px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        padding-left: 50px; /* Offset to center the closed book */
+      }
+
+      .book-wrapper {
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        width: 320px;
+        height: 480px;
+        transform-origin: center;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Hover State: Open Book - Shift right to accommodate the left page swinging out */
+      .group:hover .book-wrapper {
+        transform: translateX(160px) rotateY(-5deg);
+      }
+      
+      .group:hover .cover-leaf {
+        /* Critical fix: rotateY(-180deg) rotates the page, translateZ(1px) keeps it on the same plane as right page */
+        transform: rotateY(-180deg) translateZ(1px);
+      }
+
+      .group:hover .book-shadow {
+         opacity: 0.3;
+         /* Stretch shadow to cover both pages */
+         transform: rotateX(90deg) translateZ(-50px) scaleX(2.1) translateX(-25%);
+         filter: blur(25px);
+      }
+
+      /* The Movable Cover (Front + Inside Left) */
+      .cover-leaf {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform-origin: 0% 50%; /* Spine is at the left edge, vertically centered */
+        transform-style: preserve-3d;
+        transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 10;
+        /* Crucial: When closed, the page sits at its natural position */
+        transform: rotateY(0deg) translateZ(0px);
+      }
+
+      /* Front Cover Face */
+      .cover-front {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        z-index: 2;
+        border-radius: 2px 6px 6px 2px;
+        overflow: hidden;
+        /* Spine highlight on the left */
+        box-shadow: inset 4px 0 10px rgba(0,0,0,0.1); 
+      }
+
+      /* Back of Cover Face (Inside Left Page) */
+      .cover-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        transform: rotateY(180deg); /* Faces opposite to front */
+        z-index: 1;
+        border-radius: 6px 2px 2px 6px;
+        background: #fff;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        /* Spine shadow on the right (because it's flipped) */
+        box-shadow: inset -4px 0 15px rgba(0,0,0,0.15);
+      }
+
+      /* The Static Back (Inside Right Page + Back Cover) */
+      .back-static {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0; /* Behind leaf */
+        border-radius: 2px 6px 6px 2px;
+        background: #fff;
+        box-shadow: 
+          15px 15px 40px rgba(26, 12, 47, 0.15), /* Deep purple shadow */
+          inset 10px 0 20px rgba(0,0,0,0.05); /* Inner spine shadow */
+        overflow: hidden;
+      }
+
+      /* Spine Element */
+      .spine {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -12px;
+        width: 12px;
+        background: #1A0C2F;
+        transform: rotateY(-90deg) translateX(-6px);
+        transform-origin: right;
+        z-index: 5;
+        border-radius: 2px 0 0 2px;
+      }
+      
+      .book-shadow {
+        position: absolute;
+        bottom: -30px;
+        left: 5%;
+        width: 90%;
+        height: 40px;
+        background: radial-gradient(ellipse at center, rgba(26, 12, 47, 0.5) 0%, rgba(0,0,0,0) 70%);
+        transform: rotateX(90deg) translateZ(-40px);
+        transition: all 0.8s ease;
+        opacity: 0.6;
+        filter: blur(15px);
+        pointer-events: none;
+      }
+
+      /* Grid Texture */
+      .bg-grid-pattern {
+        background-image: radial-gradient(#1A0C2F 0.8px, transparent 0.8px);
+        background-size: 32px 32px;
+      }
+      
+      /* Alpha Shape helpers */
+      .alpha-circle {
+        border-width: 60px;
+        border-color: #1A0C2F;
+        mix-blend-mode: multiply;
+      }
+    </style>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
