@@ -1,49 +1,51 @@
-# AdTech Quiz App
 
-The **AdTech Quiz App** is a modern, interactive quiz-based web application built using **Vite, React, and TypeScript**.  
-It is designed to deliver a smooth and engaging quiz experience while following clean code practices and a scalable component-based architecture.
+#  AdTech Quiz Web App
 
-This project was developed as part of an **internship assignment**, focusing on real-world frontend development workflows.
+An interactive quiz-based web application built to assess and reinforce knowledge from **The AdTech Book**.  
+This app delivers a smooth, engaging quiz experience with real-time progress tracking and a clear results summary.
 
----
-
-## 📌 Key Features
-
-- Landing page with quiz introduction
-- One-question-at-a-time quiz flow
-- Multiple-choice questions
-- Progress tracking during the quiz
-- Results summary after completion
-- Reusable and modular React components
-- Fast development and build performance using Vite
-- Type-safe implementation using TypeScript
+Designed as part of an internship project, the application focuses on clean UI, modular architecture, and scalable frontend practices.
 
 ---
 
-## 🧰 Tech Stack
+##  Features
 
-- **Frontend Framework:** React
-- **Language:** TypeScript
-- **Build Tool:** Vite
-- **Styling:** CSS
-- **Package Manager:** npm
+-  Elegant landing page with quiz overview and call-to-action
+-  One-question-at-a-time quiz flow
+- Real-time progress tracking
+-  Immediate answer validation
+-  Results summary after quiz completion
+-  Reusable and modular React components
+-  Fast development and build performance using Vite
+-  Fully type-safe implementation using TypeScript
 
 ---
 
-## 📁 Folder Structure
+##  Tech Stack
 
-AdTech-QuizApp-C1XIntern-main/
-│
+- **Frontend Framework:** React  
+- **Language:** TypeScript  
+- **Build Tool:** Vite  
+- **Styling:** CSS  
+- **Package Manager:** npm  
+
+---
+
+
+## Folder Structure
+
+```text
+AdTech-QuizApp-C1XIntern/
 ├── components/
-│ ├── AboutUs.tsx
-│ ├── Button.tsx
-│ ├── Landing.tsx
-│ ├── Layout.tsx
-│ ├── Quiz.tsx
-│ └── Results.tsx
+│   ├── AboutUs.tsx
+│   ├── Button.tsx
+│   ├── Landing.tsx
+│   ├── Layout.tsx
+│   ├── Quiz.tsx
+│   └── Results.tsx
 │
 ├── data/
-│ └── questions.ts
+│   └── questions.ts
 │
 ├── public/
 │
@@ -51,66 +53,73 @@ AdTech-QuizApp-C1XIntern-main/
 ├── index.html
 ├── index.tsx
 ├── index.css
+│
 ├── metadata.json
 ├── types.ts
+│
 ├── package.json
 ├── package-lock.json
 ├── tsconfig.json
 ├── vite.config.ts
 └── README.md
-
+````
 
 ---
 
-## ⚙️ Prerequisites
+## Installation & Setup
 
-Make sure the following are installed on your system:
-
-- **Node.js** (v16 or above recommended)
-- **npm**
-
-Verify installation:
+Follow these steps to run the project locally:
 
 ```bash
-node -v
-npm -v
+# Clone the repository
+git clone https://github.com/lavanitha/AdTech-QuizApp-C1XIntern.git
 
-## 🚀 Running the Project Locally
+# Navigate to the project directory
+cd AdTech-QuizApp-C1XIntern
 
-### 1️⃣ Install Dependencies
-```bash
+# Install dependencies
 npm install
 
+# Start the development server
+npm run dev
+````
 
-## 🧠 Application Flow
+---
 
-- User lands on the **Landing Page**
-- Quiz starts with **one question displayed at a time**
-- User selects answers and navigates through questions
+## Quiz Logic Overview
+
+- Questions are sourced from `data/questions.ts`
+- Each question supports multiple-choice options
+- User selections are validated instantly
 - Quiz progress is tracked internally
-- Final results are displayed upon completion
+- Final score and performance summary are displayed upon completion
 
 ---
 
-## 🎯 Objective of the Project
+##  Project Purpose
 
-This project aims to:
+This project was developed to:
 
-- Demonstrate understanding of **React component architecture**
-- Apply **TypeScript** for type safety
-- Build a **real-world quiz application**
-- Follow **modern frontend development standards**
-- Gain hands-on experience with **Vite tooling**
+- Demonstrate practical React + TypeScript skills
+- Apply modular component-based design
+- Build a real-world quiz engine
+- Create a clean, readable, and scalable frontend codebase
+- Showcase internship-level production readiness
 
 ---
 
-## 👩‍💻 Developer
+##  Author
 
 **Mary Lavanitha Sunder**  
- Software Developer  | Intern
+Frontend Developer | Intern  
+GitHub: https://github.com/lavanitha
 
 ---
 
-## 📜 License
+##  License
 
-This project is intended for **educational and internship purposes only**.
+This project is for educational and internship demonstration purposes.
+
+
+
+
