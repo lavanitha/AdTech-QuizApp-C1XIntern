@@ -65,25 +65,18 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
 
         {/* RIGHT COLUMN: 3D FLIPBOOK */}
         <div className="perspective-container h-[550px] group order-1 lg:order-2"
-
- style={{
-          pointerEvents: openPage ? 'none' : 'auto'
-        }}>
+          style={{
+            pointerEvents: openPage ? 'none' : 'auto'
+          }}>
           
           <div className="book-wrapper animate-float flex items-stretch justify-center h-full">
-
 
              {/* Shadow */}
              <div className="book-shadow" />
 
              {/* === MOVING PART: COVER LEAF === */}
-             <div
-  className="cover-leaf"
-  style={{
-    transformOrigin: 'left bottom',
-    transformStyle: 'preserve-3d'
-  }}
->
+             {/* ✅ FIXED: Removed inline style that was breaking the transform-origin */}
+             <div className="cover-leaf">
                 
                 {/* FRONT COVER */}
                 <div className="cover-front bg-[#FF3E24] flex flex-col relative border border-white/5">
@@ -121,71 +114,73 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
                 </div>
 
                 {/* BACK OF COVER (Inside Left - PDF Page 2) */}
-<div className="cover-back bg-gradient-to-br from-[#FF3E24] via-[#cc2e1a] to-[#991b0b] relative overflow-hidden h-full flex">
-                   <div className="relative z-10 h-full flex flex-col p-10 text-white justify-between">
+                <div className="cover-back bg-gradient-to-br from-[#FF3E24] via-[#cc2e1a] to-[#991b0b] ">
+                   <div className="relative z-10 h-full flex flex-col text-white justify-between">
                       <div>
-                        <div className="text-white/60 text-[10px] uppercase tracking-[0.2em] mb-12">The AdTech Book</div>
+                        <div className="text-white/60 text-[10px] uppercase tracking-[0.2em] mb-8">The AdTech Book</div>
                         
-                        <h2 className="text-4xl font-normal mb-8">About Avenga</h2>
+                        <h2 className="text-3xl font-normal mb-6">About Avenga</h2>
                         
-                        <div className="space-y-6 text-sm font-light leading-relaxed text-white/90">
+                        <div className="space-y-4 text-xs font-light leading-relaxed text-white/90">
                           <p>Avenga is a global engineering and consulting partner, trusted by leading AdTech, MarTech, and media companies to design, build, and scale high-performance platforms.</p>
                           <p>From custom demand and supply-side solutions to data management, consent, and attribution systems, we bring deep domain expertise and cross-functional teams to address complex technical challenges.</p>
                           
-                          <div className="mt-8 pt-8 border-t border-white/20">
-                             <p className="font-medium text-white">Contact us at <span className="font-bold underline">avenga.com</span></p>
+                          <div className="mt-6 pt-6 border-t border-white/20">
+                             <p className="font-medium text-white text-xs">Contact us at <span className="font-bold underline">avenga.com</span></p>
                           </div>
                         </div>
                       </div>
                    </div>
 
-                   <div className="absolute bottom-6 right-8 text-xs text-white/50 font-mono z-20">2</div>
+                   <div className="absolute bottom-4 right-6 text-xs text-white/50 font-mono z-20">2</div>
                 </div>
              </div>
 
              {/* === STATIC PART: INSIDE RIGHT (PDF Page 3) === */}
-             <div className="back-static bg-[#F9F7F5] relative flex flex-col p-10 text-[#1A0C2F] overflow-hidden h-full">
+             <div className="back-static bg-[#F9F7F5] relative overflow-hidden">
 
                 {/* Spine Shadow Overlay */}
                 <div className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-black/10 to-transparent z-10 pointer-events-none"></div>
                 
-                <div className="text-[#1A0C2F]/40 text-[10px] uppercase tracking-[0.2em] mb-8 text-right">The AdTech Book</div>
-                
-                <div className="flex-1 space-y-8 pl-2 flex flex-col">
-                   {/* Table of Contents Item 1 */}
-                   <div className="cursor-pointer group/toc" onClick={() => setOpenPage('about')}>
-                     <div className="flex justify-between items-baseline border-b border-[#1A0C2F]/10 pb-2 mb-2 group-hover/toc:border-[#FF3E24]/40 transition-colors">
-                        <span className="font-bold text-[#FF3E24] text-lg group-hover/toc:text-[#FF3E24]/70 transition-colors">1. Basics</span>
-                        <span className="font-mono text-xs opacity-40">4</span>
+                <div className="relative h-full flex flex-col text-[#1A0C2F]">
+                  <div className="text-[#1A0C2F]/40 text-[10px] uppercase tracking-[0.2em] mb-6 text-right">The AdTech Book</div>
+                  
+                  <div className="flex-1 space-y-6 pl-2 flex flex-col">
+                     {/* Table of Contents Item 1 */}
+                     <div className="cursor-pointer group/toc" onClick={() => setOpenPage('about')}>
+                       <div className="flex justify-between items-baseline border-b border-[#1A0C2F]/10 pb-2 mb-2 group-hover/toc:border-[#FF3E24]/40 transition-colors">
+                          <span className="font-bold text-[#FF3E24] text-lg group-hover/toc:text-[#FF3E24]/70 transition-colors">1. Basics</span>
+                          <span className="font-mono text-xs opacity-40">4</span>
+                       </div>
+                       <div className="pl-4 space-y-1 text-xs font-medium text-gray-500 group-hover/toc:text-gray-700 transition-colors">
+                          <div className="flex justify-between"><span>AdTech</span></div>
+                          <div className="flex justify-between"><span>Ad Slot & Space</span></div>
+                          <div className="flex justify-between"><span>Inventory</span></div>
+                       </div>
                      </div>
-                     <div className="pl-4 space-y-1 text-xs font-medium text-gray-500 group-hover/toc:text-gray-700 transition-colors">
-                        <div className="flex justify-between"><span>AdTech</span></div>
-                        <div className="flex justify-between"><span>Ad Slot & Space</span></div>
-                        <div className="flex justify-between"><span>Inventory</span></div>
-                     </div>
-                   </div>
 
-                   {/* Table of Contents Item 2 */}
-                   <div className="cursor-pointer group/toc" onClick={() => setOpenPage('edition')}>
-                     <div className="flex justify-between items-baseline border-b border-[#1A0C2F]/10 pb-2 mb-2 group-hover/toc:border-[#FF3E24]/40 transition-colors">
-                        <span className="font-bold text-[#FF3E24] text-lg group-hover/toc:text-[#FF3E24]/70 transition-colors">2. Technology</span>
-                        <span className="font-mono text-xs opacity-40">8</span>
+                     {/* Table of Contents Item 2 */}
+                     <div className="cursor-pointer group/toc" onClick={() => setOpenPage('edition')}>
+                       <div className="flex justify-between items-baseline border-b border-[#1A0C2F]/10 pb-2 mb-2 group-hover/toc:border-[#FF3E24]/40 transition-colors">
+                          <span className="font-bold text-[#FF3E24] text-lg group-hover/toc:text-[#FF3E24]/70 transition-colors">2. Technology</span>
+                          <span className="font-mono text-xs opacity-40">8</span>
+                       </div>
+                       <div className="pl-4 space-y-1 text-xs font-medium text-gray-500 group-hover/toc:text-gray-700 transition-colors">
+                          <div className="flex justify-between"><span>DSP & SSP</span></div>
+                          <div className="flex justify-between"><span>Ad Server</span></div>
+                       </div>
                      </div>
-                     <div className="pl-4 space-y-1 text-xs font-medium text-gray-500 group-hover/toc:text-gray-700 transition-colors">
-                        <div className="flex justify-between"><span>DSP & SSP</span></div>
-                        <div className="flex justify-between"><span>Ad Server</span></div>
-                     </div>
-                   </div>
 
-                   {/* Quote Area */}
-                   <div className="mt-auto p-5 bg-white border border-[#1A0C2F]/5 shadow-sm rounded-sm">
-                      <p className="text-xs text-gray-500 leading-relaxed italic font-serif">
-                        "Before diving into the complexities of the AdTech ecosystem, it’s essential to understand its core components."
-                      </p>
-                   </div>
+                     {/* Quote Area */}
+                     <div className="mt-auto p-4 bg-white border border-[#1A0C2F]/5 shadow-sm rounded-sm">
+                        <p className="text-xs text-gray-500 leading-relaxed italic font-serif">
+                          "Before diving into the complexities of the AdTech ecosystem, it's essential to understand its core components."
+                        </p>
+                     </div>
+                  </div>
+
+                  <div className="absolute bottom-4 right-6 text-xs text-gray-400 font-mono">3</div>
                 </div>
-
-                <div className="absolute bottom-6 right-8 text-xs text-gray-400 font-mono">3</div>
 
              </div>
              
